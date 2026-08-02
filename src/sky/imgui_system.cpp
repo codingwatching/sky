@@ -106,6 +106,10 @@ void ImguiSystem::end()
 	GRAPHICS->pushSampler(mSamplerNearest ? skygfx::Sampler::Nearest : skygfx::Sampler::Linear);
 	GRAPHICS->pushOrthoMatrix(getLogicalWidth(), getLogicalHeight());
 
+	auto blendMode = skygfx::BlendStates::NonPremultiplied;
+	blendMode.color_mask = { true, true, true, false };
+	GRAPHICS->pushBlendMode(blendMode);
+
 	auto drawData = ImGui::GetDrawData();
 	drawData->ScaleClipRects({ PLATFORM->getScale() * getScale(), PLATFORM->getScale() * getScale() });
 
@@ -142,7 +146,7 @@ void ImguiSystem::end()
 		}
 	}
 
-	GRAPHICS->pop(2);
+	GRAPHICS->pop(3);
 	GRAPHICS->end();
 }
 
