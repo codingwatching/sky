@@ -123,6 +123,14 @@ bool sky::Asset::Exists(const std::string& path, Storage storage)
 #endif
 }
 
+std::optional<sky::Asset> sky::Asset::Read(const std::string& path, Storage storage = Storage::Assets)
+{
+	if (!Exists(path, storage))
+		return std::nullopt;
+
+	return Asset(path, storage);
+}
+
 std::string sky::Asset::StoragePathToAbsolute(const std::string& _path, Storage storage)
 {
 	auto path = FixSlashes(_path);
