@@ -268,6 +268,14 @@ namespace sky
 		static float ArgsToValue(const std::vector<std::string>& args);
 	};
 
+	template<>
+	struct CVarTraits<std::string>
+	{
+		inline static const std::vector<std::string> Args = { "string" };
+		static std::vector<std::string> ValueToArgs(std::string value);
+		static std::string ArgsToValue(const std::vector<std::string>& args);
+	};
+
 	template<typename T>
 	struct CVarTraits<std::optional<T>>
 	{

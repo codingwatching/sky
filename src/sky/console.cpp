@@ -466,6 +466,7 @@ int CVarTraits<int>::ArgsToValue(const std::vector<std::string>& args)
 {
 	return std::stoi(args.at(0));
 }
+
 std::vector<std::string> CVarTraits<float>::ValueToArgs(float value)
 {
 	return { std::to_string(value) };
@@ -475,3 +476,14 @@ float CVarTraits<float>::ArgsToValue(const std::vector<std::string>& args)
 {
 	return std::stof(args.at(0));
 }
+
+std::vector<std::string> CVarTraits<std::string>::ValueToArgs(std::string value)
+{
+	return { value };
+}
+
+std::string CVarTraits<std::string>::ArgsToValue(const std::vector<std::string>& args)
+{
+	return args.at(0);
+}
+
